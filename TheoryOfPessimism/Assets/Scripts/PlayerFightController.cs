@@ -74,11 +74,6 @@ public class PlayerFightController : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(rightTilt);
                 break;
         }
-
-        if (playerHealth <= 0)
-        {
-            state = PlayerStates.death;
-        }
     }
 
     void NormalUpdate()
@@ -122,13 +117,18 @@ public class PlayerFightController : MonoBehaviour
 
     void AttackUpdate()
     {
-        if (enemyState == EnemyStates.normal)
+        if (enemyState == EnemyStates.normal && enemy.isVulnerable)
         {
             if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
             {
                 enemy.enemyHealth = enemy.enemyHealth - attackDamage;
+                enemy.isVulnerable = false;
                 state = PlayerStates.normal;
             }
+        }
+        else
+        {
+            state = PlayerStates.normal;
         }
     }
 
@@ -136,11 +136,12 @@ public class PlayerFightController : MonoBehaviour
     {
         if(blockMeter > 0)
         {
-            StartCoroutine(Block());
+            StartCoroutine(nameof(Block));
             if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
             {
                 state = PlayerStates.normal;
                 blockMeter = blockMeterMax;
+                StopCoroutine(nameof(Block));
             }
         }
         else 
