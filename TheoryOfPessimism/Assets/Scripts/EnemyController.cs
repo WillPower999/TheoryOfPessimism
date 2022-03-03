@@ -124,7 +124,10 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        player.playerHealth = player.playerHealth - attackDamage;
+        if(playerState != PlayerStates.blocking || playerState != PlayerStates.dodging)
+        { 
+            player.playerHealth = player.playerHealth - attackDamage; 
+        }
         state = EnemyStates.normal;
         isVulnerable = true;
         StartCoroutine(Vulnerability());
