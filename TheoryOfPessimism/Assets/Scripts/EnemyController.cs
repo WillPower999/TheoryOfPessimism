@@ -15,12 +15,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int MAX_AI;
 
     public float delayTime;
+    public float vulnerabilityTimer;
 
     public bool isVulnerable;
     public bool isCheckingMovement;
 
     public EnemyStates state;
-    public PlayerStates playerState;
 
     public Vector3 center;
     public Vector3 left;
@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
     void NormalUpdate()
     {
-        if(playerState == PlayerStates.attacking && !isVulnerable)
+        if(player.state == PlayerStates.attacking && !isVulnerable)
         {
             state = EnemyStates.blocking;
             return;
@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-
+            //StopCoroutine(nameof(MovementOpportunityCheck));
         }
 
     }
@@ -111,32 +111,42 @@ public class EnemyController : MonoBehaviour
         delayTime = Random.Range(1.5f, 2.5f);
         yield return new WaitForSeconds(delayTime);
         aIMatch = Random.Range(0, MAX_AI);
-        if(aI >= aIMatch && playerState == PlayerStates.normal)
+        if(aI >= aIMatch && player.state == PlayerStates.normal)
         {
             state = EnemyStates.attacking;
         }
         else
         {
             state = EnemyStates.normal;
+            isCheckingMovement = false;
         }
-        isCheckingMovement = false;
     }
 
     private IEnumerator Attack()
     {
-        if(playerState != PlayerStates.blocking || playerState != PlayerStates.dodging)
-        { 
-            player.playerHealth = player.playerHealth - attackDamage; 
+        if (!(player.state == PlayerStates.blocking || player.state == PlayerStates.dodging))
+        {
+            player.playerHealth = player.playerHealth - attackDamage;
+            state = EnemyStates.normal;
+            isVulnerable = true;
+            StartCoroutine(Vulnerability());
+            yield return null;
         }
-        state = EnemyStates.normal;
-        isVulnerable = true;
-        StartCoroutine(Vulnerability());
-        yield return null;
+        else
+        {
+            state = EnemyStates.normal;
+            isVulnerable = true;
+            StartCoroutine(Vulnerability());
+            yield return null;
+        }
+
     }
 
     private IEnumerator Vulnerability()
     {
-        yield return new WaitForSeconds(Random.Range(1, 1.5f));
+        vulnerabilityTimer = Random.Range(1, 1.5f);
+        yield return new WaitForSeconds(vulnerabilityTimer);
+        isCheckingMovement = false;
         isVulnerable = false;
     }
 
