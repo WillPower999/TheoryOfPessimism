@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerFightController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerFightController : MonoBehaviour
     public int attackDamage;
     public int blockMeterMax;
     public int blockMeter;
+    public int sceneToLoad;
 
     public bool blockPossible;
 
@@ -157,6 +159,7 @@ public class PlayerFightController : MonoBehaviour
     void PlayerDies()
     {
         Destroy(gameObject);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     private IEnumerator Block()

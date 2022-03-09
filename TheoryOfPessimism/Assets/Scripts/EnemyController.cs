@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -11,6 +12,7 @@ public class EnemyController : MonoBehaviour
 
     public int aI;
     public int aIMatch;
+    public int sceneToLoad;
 
     [SerializeField] private int MAX_AI;
 
@@ -103,6 +105,7 @@ public class EnemyController : MonoBehaviour
     void EnemyDies()
     {
         Destroy(gameObject);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     private IEnumerator MovementOpportunityCheck()

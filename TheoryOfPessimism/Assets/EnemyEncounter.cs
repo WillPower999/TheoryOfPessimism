@@ -7,7 +7,7 @@ public class EnemyEncounter : MonoBehaviour
 {
     private EnemyController enemy;
 
-    public Collider encounterBox;
+    public GameObject player;
     public bool defeated;
     public int enemyAI;
     public int sceneToLoad;
@@ -15,7 +15,7 @@ public class EnemyEncounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy = FindObjectOfType<EnemyController>().GetComponent<EnemyController>();
+        //enemy = FindObjectOfType<EnemyController>().GetComponent<EnemyController>();
     }
 
     // Update is called once per frame
@@ -24,12 +24,12 @@ public class EnemyEncounter : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D player)
     {
         if(!defeated)
         {
             SceneManager.LoadScene(sceneToLoad);
-            enemy.aI = enemyAI;
+            //enemy.aI = enemyAI;
         }
         else
         {

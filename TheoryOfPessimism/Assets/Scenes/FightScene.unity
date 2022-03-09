@@ -160,6 +160,7 @@ MonoBehaviour:
   attackDamage: 1
   blockMeterMax: 5
   blockMeter: 0
+  sceneToLoad: 1
   blockPossible: 0
   center: {x: 0, y: -2, z: 0}
   left: {x: -2, y: -1.5, z: 0}
@@ -267,12 +268,13 @@ MonoBehaviour:
   attackDamage: 1
   aI: 20
   aIMatch: 0
+  sceneToLoad: 1
   MAX_AI: 20
   delayTime: 0
+  vulnerabilityTimer: 0
   isVulnerable: 0
   isCheckingMovement: 0
   state: 0
-  playerState: 0
   center: {x: 0, y: 0, z: 0}
   left: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
