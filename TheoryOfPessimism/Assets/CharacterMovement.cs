@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public Camera gameCamera;
+    
     public float movementSpeed;
 
     public Rigidbody2D rb;
 
-    public Vector2 movement;
+    private Vector2 movement;
+
+    private void Start()
+    {
+        //gameCamera.transform.position = gameObject.transform.position;
+    }
 
     // Update is called once per frame
     private void Update()
@@ -44,6 +51,7 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);  
+        rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+        //gameCamera.transform.position = gameObject.transform.position;
     }
 }
