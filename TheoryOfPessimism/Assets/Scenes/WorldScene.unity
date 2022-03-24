@@ -65272,6 +65272,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1296802532}
+    - target: {fileID: 3699390851818800710, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699390851818800710, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3699390851991778064, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -65319,6 +65327,10 @@ PrefabInstance:
     - target: {fileID: 3699390851991778066, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699390851991778284, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36be3fade7404df47b640a7a8fb1cc6b, type: 3}
