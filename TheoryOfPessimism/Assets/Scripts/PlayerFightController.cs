@@ -29,6 +29,8 @@ public class PlayerFightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.Instance.PlayMusic(Music.Battle_Music);
+        
         position = PlayerPosition.center;
         state = PlayerStates.normal;
 

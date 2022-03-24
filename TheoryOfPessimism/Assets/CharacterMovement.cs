@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.PlayMusic(Music.Overworld_Music);
         //gameCamera.transform.position = gameObject.transform.position;
     }
 
