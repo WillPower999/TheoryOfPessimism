@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public Animator animator;
+
     private Vector2 movement;
 
     private void Start()
@@ -48,6 +50,12 @@ public class CharacterMovement : MonoBehaviour
         {
             movement.x = 0;
         }
+
+        //Animations
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     void FixedUpdate()
