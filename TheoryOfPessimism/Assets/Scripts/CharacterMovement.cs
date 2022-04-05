@@ -10,7 +10,9 @@ public class CharacterMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    private Vector2 movement;
+    public Vector2 movement;
+
+    public int directionIs;
 
     private void Start()
     {
@@ -25,10 +27,12 @@ public class CharacterMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             movement.y = movement.y + 1;
+            directionIs = 1;
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             movement.y = movement.y - 1;
+            directionIs = 3;
         }
         else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
@@ -39,10 +43,12 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             movement.x = movement.x + 1;
+            directionIs = 2;
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             movement.x = movement.x - 1;
+            directionIs = 4;
         }
         else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
