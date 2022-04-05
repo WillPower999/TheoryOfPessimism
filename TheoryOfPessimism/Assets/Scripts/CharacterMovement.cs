@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
 
     public Animator animator;
 
-    private Vector2 movement;
+    public Vector2 movement;
 
     private void Start()
     {
