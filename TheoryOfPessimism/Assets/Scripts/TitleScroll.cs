@@ -10,5 +10,7 @@ public class TitleScroll : MonoBehaviour
     void FixedUpdate()
     {
         gameObject.transform.Translate(translation * Time.deltaTime);
+
+        //gameObject.transform.
     }
 }
