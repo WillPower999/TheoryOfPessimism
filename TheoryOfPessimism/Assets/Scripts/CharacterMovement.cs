@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
     public Camera gameCamera;
+
+    public int health;
+
+    public int maxHealth;
     
     public float movementSpeed;
 
@@ -19,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         canMove = true;
+        health = maxHealth;
         SoundManager.Instance.PlayMusic(Music.Overworld_Music);
         //gameCamera.transform.position = gameObject.transform.position;
     }
@@ -62,6 +68,11 @@ public class CharacterMovement : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
+
+        if(health <= 0)
+        {
+            Death();
+        }
     }
 
     void FixedUpdate()
@@ -71,5 +82,11 @@ public class CharacterMovement : MonoBehaviour
             rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
         }
         //gameCamera.transform.position = gameObject.transform.position;
+    }
+
+    private void Death()
+    {
+        SceneManager.LoadScene("WorldScene");
+        health = maxHealth;
     }
 }
