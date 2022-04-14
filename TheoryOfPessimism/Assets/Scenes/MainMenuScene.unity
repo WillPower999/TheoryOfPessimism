@@ -1335,10 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fa2ed88eda2a84d890fd0704853efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels:
-  - {fileID: 730343738}
-  choke: 0
-  scrollSpeed: 25
+  translation: {x: 0, y: 0, z: 0}
 --- !u!1 &1931996429
 GameObject:
   m_ObjectHideFlags: 0
