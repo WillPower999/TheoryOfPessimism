@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7127351964098841338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.496, y: -4.994, z: 0}
+  m_LocalPosition: {x: -0.08573553, y: 0.3572449, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3568675100124824159}
@@ -207,8 +207,6 @@ MonoBehaviour:
   gameCamera: {fileID: 0}
   movementSpeed: 5
   rb: {fileID: 7127351964098841336}
-  animator: {fileID: 0}
-  movement: {x: 0, y: 0}
 --- !u!61 &7127351964098841335
 BoxCollider2D:
   m_ObjectHideFlags: 0
