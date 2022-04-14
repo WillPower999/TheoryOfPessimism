@@ -1338,7 +1338,7 @@ MonoBehaviour:
   levels:
   - {fileID: 730343738}
   choke: 0
-  scrollSpeed: 0
+  scrollSpeed: 10
 --- !u!1 &1931996429
 GameObject:
   m_ObjectHideFlags: 0
