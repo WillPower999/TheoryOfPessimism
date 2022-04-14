@@ -45,7 +45,6 @@ public class EventHandling : MonoBehaviour
         {
             if (!doesEventWait[sequenceNumber])
             {
-                print("hit 'E' now");
                 if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Slash))
                 {
                     //sequenceNumber += 1;
@@ -70,7 +69,6 @@ public class EventHandling : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         canInteract = true;
-        print("entered");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -80,12 +78,9 @@ public class EventHandling : MonoBehaviour
 
     private IEnumerator AdvanceSequence(float duration)
     {
-        print("sequence number: " + sequenceNumber + ", for " + duration + " seconds");
         yield return new WaitForSeconds(duration);
         interacting = true;
-        print("interacting = " + interacting);
         eventSequence[sequenceNumber].gameObject.SetActive(true);
-        print("item " + sequenceNumber + " exists");
         if (sequenceNumber >= arraySize - 1)
         {
             cM.canMove = true;
