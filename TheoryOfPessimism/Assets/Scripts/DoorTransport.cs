@@ -27,7 +27,7 @@ public class DoorTransport : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        cM.gameObject.SetActive(false);
+        cM.canMove = false;
         StartCoroutine(EnterDoor());
     }
 
@@ -37,6 +37,6 @@ public class DoorTransport : MonoBehaviour
         player.gameObject.transform.position = new Vector3(doorToGoTo.gameObject.transform.position.x, doorToGoTo.gameObject.transform.position.y + playerOffset);
         cM.movement.x = 0;
         cM.movement.y = 0;
-        cM.gameObject.SetActive(true);
+        cM.canMove = true;
     }
 }

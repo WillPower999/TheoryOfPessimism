@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     public void PlayOnAwake()
     {
         controlUIShow = false;
-        /////SoundManager.Instance.PlayMusic(Music.UI_Game_Audio);
+        SoundManager.Instance.PlayMusic(Music.Theme_Music);
     }
 
     private void Start()
@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
         loadGame.onClick.AddListener(LoadGame);
         controlUI.onClick.AddListener(ShowControlMenu);
         //SoundManager.Instance.PlayMusic(Music.UI_Game_Audio);
+        SoundManager.Instance.PlayMusic(Music.Theme_Music);
     }
 
     private void Update()

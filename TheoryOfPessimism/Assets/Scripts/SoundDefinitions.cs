@@ -5,7 +5,8 @@ public enum Sound
 
 public enum Music 
 {
-    Overworld_Music = 0,
+    Theme_Music = 0,
+    Overworld_Music,
     Battle_Music,
     None
 }

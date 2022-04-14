@@ -48,7 +48,9 @@ MonoBehaviour:
     _clip: {fileID: 0}
   _musicTracks:
   - _musicOption: 0
-    _track: {fileID: 0}
-  - _musicOption: 0
-    _track: {fileID: 0}
+    _track: {fileID: 8300000, guid: efe11790b28225941bb276c2813723e2, type: 3}
+  - _musicOption: 1
+    _track: {fileID: 8300000, guid: cc9c4b83387d339459201fae685a565e, type: 3}
+  - _musicOption: 2
+    _track: {fileID: 8300000, guid: 355176f33ccf9e342b322465a5217a56, type: 3}
   _numSoundEffectSources: 1
