@@ -7,6 +7,10 @@ public class EventHandling : MonoBehaviour
     [SerializeField] private GameObject[] eventSequence;
     [SerializeField] private bool[] doesEventWait;
     [SerializeField] private int[] eventTime;
+    [SerializeField] private bool[] doesGetDestroyed;
+    [SerializeField] private bool[] doesTranslate;
+    [SerializeField] private Vector3[] toTranslate;
+    public int movementSpeed;
     public int arraySize;
     public CharacterMovement cM;
     private int sequenceNumber;
@@ -60,7 +64,11 @@ public class EventHandling : MonoBehaviour
         }
         if (sequenceNumber >= arraySize)
         {
-            cM.gameObject.SetActive(true);
+            if (doesGetDestroyed[sequenceNumber])
+            {
+                Destroy(eventSequence[sequenceNumber]);
+            }
+            //cM.gameObject.SetActive(true);
             interacting = false;
             canInteract = true;
         }
@@ -80,7 +88,16 @@ public class EventHandling : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         interacting = true;
+        if (sequenceNumber > 0)
+            if (doesGetDestroyed[sequenceNumber - 1])
+            {
+                Destroy(eventSequence[sequenceNumber - 1]);
+            }
         eventSequence[sequenceNumber].gameObject.SetActive(true);
+        if (doesTranslate[sequenceNumber])
+        {
+            eventSequence[sequenceNumber].gameObject.transform.Translate(toTranslate[sequenceNumber] * movementSpeed * Time.deltaTime);
+        }
         if (sequenceNumber >= arraySize - 1)
         {
             cM.canMove = true;
