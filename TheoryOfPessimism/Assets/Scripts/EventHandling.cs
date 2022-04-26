@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventHandling : MonoBehaviour
 {
-    [SerializeField] private GameObject[] eventSequence;
+    [SerializeField] public GameObject[] eventSequence;
     [SerializeField] private bool[] doesEventWait;
     [SerializeField] private int[] eventTime;
     [SerializeField] private bool[] doesGetDestroyed;

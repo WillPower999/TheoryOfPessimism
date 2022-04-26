@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -13,18 +14,26 @@ public class CharacterMovement : MonoBehaviour
     
     public float movementSpeed;
 
+    public GameObject pauseMenu;
+
     public Rigidbody2D rb;
 
     public Animator animator;
 
     public Vector2 movement;
 
+    public bool menuOpen;
+
     public bool canMove;
+
+    public Button saveGame;
 
     private void Start()
     {
+        menuOpen = false;
         canMove = true;
         health = maxHealth;
+        saveGame.onClick.AddListener(SaveGame);
         SoundManager.Instance.PlayMusic(Music.Overworld_Music);
         //gameCamera.transform.position = gameObject.transform.position;
     }
@@ -62,6 +71,26 @@ public class CharacterMovement : MonoBehaviour
                 movement.x = 0;
             }
 
+            if (menuOpen == false)
+            {
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    canMove = false;
+                    pauseMenu.gameObject.SetActive(true);
+                    menuOpen = true;
+                }
+            }
+            else if (menuOpen == true)
+            {
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    canMove = true;
+                    pauseMenu.gameObject.SetActive(false);
+                    menuOpen = false;
+
+                }
+            }
+
             //Animations
 
             animator.SetFloat("Horizontal", movement.x);
@@ -88,5 +117,12 @@ public class CharacterMovement : MonoBehaviour
     {
         SceneManager.LoadScene("WorldScene");
         health = maxHealth;
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.SetBool("isInteractable", true);
+        SaveSystem.SetVector3("Player Position", gameObject.transform.position);
+        SaveSystem.SetInt("Player Health", health);
     }
 }
