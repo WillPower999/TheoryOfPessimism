@@ -130,7 +130,7 @@ public class PlayerFightController : MonoBehaviour
                 state = PlayerStates.normal;
             }
         }
-        else
+        else if(!enemy.isVulnerable)
         {
             state = PlayerStates.normal;
         }

@@ -66,6 +66,7 @@ public class EnemyController : MonoBehaviour
 
     void NormalUpdate()
     {
+        print("State = " + state);
         if(player.state == PlayerStates.attacking && !isVulnerable)
         {
             state = EnemyStates.blocking;
@@ -99,7 +100,12 @@ public class EnemyController : MonoBehaviour
 
     void BlockUpdate()
     {
-        StartCoroutine(BlockDelay());
+        print("State = " + state);
+        if (!(player.state == PlayerStates.attacking) && !isVulnerable)
+        {
+            state = EnemyStates.normal;
+        }
+        //StartCoroutine(BlockDelay());
     }
 
     void EnemyDies()
@@ -110,6 +116,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator MovementOpportunityCheck()
     {
+        print("State = " + state);
         isCheckingMovement = true;
         delayTime = Random.Range(1.5f, 2.5f);
         yield return new WaitForSeconds(delayTime);
@@ -127,6 +134,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        print("State = " + state);
         if (!(player.state == PlayerStates.blocking || player.state == PlayerStates.dodging))
         {
             player.playerHealth = player.playerHealth - attackDamage;
@@ -147,17 +155,19 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator Vulnerability()
     {
+        print("State = " + state);
         vulnerabilityTimer = Random.Range(1, 1.5f);
         yield return new WaitForSeconds(vulnerabilityTimer);
         isCheckingMovement = false;
         isVulnerable = false;
     }
 
-    private IEnumerator BlockDelay()
-    {
-        yield return new WaitForSeconds(5);
-        state = EnemyStates.normal;
-    }
+    //private IEnumerator BlockDelay()
+    //{
+    //    print("State = " + state);
+    //    yield return new WaitForSeconds(5);
+    //    state = EnemyStates.normal;
+    //}
 }
 
 public enum EnemyStates
