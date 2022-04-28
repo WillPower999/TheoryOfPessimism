@@ -6,18 +6,65 @@ public class LoadGame : MonoBehaviour
 {
     public CharacterMovement player;
     public EventHandling[] events;
+    public MainMenu mM;
+    public bool isMainMenu;
+    public Transform playerStartTransform;
+    private static bool loadNewGame;
 
-    // Start is called before the first frame update
+
     void Awake()
     {
+        if (isMainMenu)
+        {
+            mM = FindObjectOfType<MainMenu>();
+        }
+        else
+        {
+
+        }
         player = FindObjectOfType<CharacterMovement>();
         events = FindObjectsOfType<EventHandling>();
+
     }
 
-    // Update is called once per frame
+
     void Start()
     {
-        player.gameObject.transform.position = SaveSystem.GetVector3("Player Position");
-        player.health = SaveSystem.GetInt("Player Health");
+        if (!isMainMenu)
+        {
+            if (loadNewGame)
+            {
+                player.gameObject.transform.position = playerStartTransform.position;
+                player.health = player.maxHealth;
+            }
+            else
+            {
+                player.gameObject.transform.position = SaveSystem.GetVector3("Player Position");
+                player.health = SaveSystem.GetInt("Player Health");
+            }
+        }
+    }
+
+
+    void Update()
+    {
+        if (isMainMenu)
+        {
+            print("mM.newGameLoad = " + mM.newGameLoad);
+            if (mM.newGameLoad)
+            {
+                loadNewGame = true;
+            }
+            else
+            {
+                loadNewGame = false;
+            }
+        }
+        else
+        {
+
+        }
+
+        print("loadNewGame = " + loadNewGame);
     }
 }

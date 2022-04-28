@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public Button controlUI;
     public bool controlUIShow;
     public bool gameToLoad;
+    public bool newGameLoad;
     public int sceneToLoad;
     public GameObject controls;
     public GameObject saveSystem;
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour
     {
         controlUIShow = false;
         SoundManager.Instance.PlayMusic(Music.Theme_Music);
+        newGameLoad = false;
         gameToLoad = false;
     }
 
@@ -52,7 +54,10 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         //SoundManager.Instance.PlaySound(Sound.Button_Click);
+        newGameLoad = true;
+        gameToLoad = false;
         SceneManager.LoadScene(sceneToLoad);
+        //Destroy(saveSystem);
     }
 
     public void LoadGame()
