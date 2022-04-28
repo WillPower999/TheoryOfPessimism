@@ -1764,7 +1764,7 @@ PrefabInstance:
       objectReference: {fileID: 1393672676}
     - target: {fileID: 4225783731224226353, guid: 8389c16a03e0d1f4f821e2ed5aed6f5b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4225783731224226353, guid: 8389c16a03e0d1f4f821e2ed5aed6f5b, type: 3}
       propertyPath: isMainMenu
