@@ -78,16 +78,7 @@ public class CharacterMovement : MonoBehaviour
                     canMove = false;
                     pauseMenu.gameObject.SetActive(true);
                     menuOpen = true;
-                }
-            }
-            else if (menuOpen == true)
-            {
-                if (Input.GetKeyDown(KeyCode.P))
-                {
-                    canMove = true;
-                    pauseMenu.gameObject.SetActive(false);
-                    menuOpen = false;
-
+                    StartCoroutine(PauseMenu());
                 }
             }
 
@@ -98,7 +89,7 @@ public class CharacterMovement : MonoBehaviour
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Death();
         }
@@ -117,6 +108,18 @@ public class CharacterMovement : MonoBehaviour
     {
         SceneManager.LoadScene("WorldScene");
         health = maxHealth;
+    }
+
+    private IEnumerator PauseMenu()
+    {
+        yield return new WaitForSeconds[1];
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            canMove = true;
+            pauseMenu.gameObject.SetActive(false);
+            menuOpen = false;
+
+        }
     }
 
     public void SaveGame()
