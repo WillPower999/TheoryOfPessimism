@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
         menuOpen = false;
         canMove = true;
         health = maxHealth;
+        
         saveGame.onClick.AddListener(SaveGame);
         SoundManager.Instance.PlayMusic(Music.Overworld_Music);
         //gameCamera.transform.position = gameObject.transform.position;

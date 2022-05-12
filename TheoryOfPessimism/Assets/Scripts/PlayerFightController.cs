@@ -7,6 +7,18 @@ public class PlayerFightController : MonoBehaviour
 {
     private EnemyController enemy;
 
+    public Animator animator;
+
+    public AnimationClip idlecenter;
+    public AnimationClip idleleft;
+    public AnimationClip idleright;
+    public AnimationClip attackcenter;
+    public AnimationClip attackleft;
+    public AnimationClip attackright;
+    public AnimationClip blockcenter;
+    public AnimationClip blockleft;
+    public AnimationClip blockright;
+
     public PlayerStates state;
     public PlayerPosition position;
     public EnemyStates enemyState;
@@ -22,9 +34,9 @@ public class PlayerFightController : MonoBehaviour
     public Vector3 center;
     public Vector3 left;
     public Vector3 right;
-    public Vector3 noTilt = Vector3.zero;
-    public Vector3 leftTilt;
-    public Vector3 rightTilt;
+    //public Vector3 noTilt = Vector3.zero;
+    //public Vector3 leftTilt;
+    //public Vector3 rightTilt;
 
     // Start is called before the first frame update
     void Start()
@@ -67,15 +79,18 @@ public class PlayerFightController : MonoBehaviour
         {
             case PlayerPosition.center:
                 gameObject.transform.position = center;
-                gameObject.transform.rotation = Quaternion.Euler(noTilt);
+                //gameObject.transform.rotation = Quaternion.Euler(noTilt);
+                animator.Play("idlecenter");
                 break;
             case PlayerPosition.left:
                 gameObject.transform.position = left;
-                gameObject.transform.rotation = Quaternion.Euler(leftTilt);
+                //gameObject.transform.rotation = Quaternion.Euler(leftTilt);
+                animator.Play("idleleft");
                 break;
             case PlayerPosition.right:
                 gameObject.transform.position = right;
-                gameObject.transform.rotation = Quaternion.Euler(rightTilt);
+                //gameObject.transform.rotation = Quaternion.Euler(rightTilt);
+                animator.Play("idleright");
                 break;
         }
     }
@@ -121,6 +136,18 @@ public class PlayerFightController : MonoBehaviour
 
     void AttackUpdate()
     {
+        if(position == PlayerPosition.center)
+        {
+            animator.Play("attackcenter");
+        }
+        if (position == PlayerPosition.left)
+        {
+            animator.Play("attackleft");
+        }
+        if (position == PlayerPosition.right)
+        {
+            animator.Play("attackright");
+        }
         if (enemyState == EnemyStates.normal && enemy.isVulnerable)
         {
             if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
@@ -140,6 +167,18 @@ public class PlayerFightController : MonoBehaviour
     {
         if(blockMeter > 0)
         {
+            if (position == PlayerPosition.center)
+            {
+                animator.Play("blockcenter");
+            }
+            if (position == PlayerPosition.left)
+            {
+                animator.Play("blockleft");
+            }
+            if (position == PlayerPosition.right)
+            {
+                animator.Play("blockright");
+            }
             StartCoroutine(nameof(Block));
             if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
             {
